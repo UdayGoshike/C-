@@ -4,7 +4,7 @@ int main(){
   int arr[5]={1,2,3,4,5};
   int n=sizeof(arr)/sizeof(int);
   int start=0;
-  while(start<=n){
+  while(start<n){
     for(int j=0;j<n;j++){
       for(int i=start;i<=j;i++){
         cout<<arr[i];
