@@ -1,0 +1,20 @@
+#include<iostream>
+#include<climits>
+using namespace std;
+int main(){
+  int arr[6]={7,1,5,3,6,4};
+  int n=sizeof(arr)/sizeof(int);
+  int best[n];
+  best[0]=INT_MAX;
+  int Min;
+  for(int i=1;i<n;i++){
+    Min=min(best[i-1],arr[i-1]);
+    best[i]=Min;
+  }
+  int Max=0;
+  for(int i=1;i<n;i++){
+    int cprof=arr[i]-best[i];
+    Max=max(Max,cprof);
+  }
+  cout<<"Max profit is:"<<Max;
+}
