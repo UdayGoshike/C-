@@ -1,0 +1,28 @@
+#include <iostream>
+#include<climits>
+using namespace std;
+bool duplicate(int *arr,int n){
+    for(int i=0;i<n;i++){
+        for(int j=0;j<i;j++){
+            if(arr[i]==arr[j]){
+                return true;
+            }
+
+        }
+    }
+    return false;
+}
+int main(){
+    int n;
+    int arr[6];
+    n=6;
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    if(duplicate(arr,n)==1){
+        cout<<"duplicates found.";
+    }
+    else{
+        cout<<"duplicates not found.";
+    }
+}
