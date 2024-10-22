@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n,m; 
+    cout<<"enter rows:";
+    cin>>n; 
+    cout<<"enter coloumns:";
+    cin>>m;
+    int arr[n][m];
+    cout<<"elements of array:";
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>arr[i][j];
+        }
+    }
+    int ur,lr,rc,lc;
+    int srow=0;
+    int scol=0;
+    int erow=n-1;
+    int ecol=m-1;
+    
+    while(srow<=erow&&scol<=ecol){
+        for(ur=scol;ur<=ecol;ur++){
+            cout<<arr[srow][ur]<<",";
+        }
+        srow++;
+        for(rc=srow;rc<=erow;rc++){
+            cout<<arr[rc][ecol]<<",";
+        }
+        ecol--;
+        if(srow<=erow){
+            for(lr=ecol;lr>=scol;lr--){
+                cout<<arr[erow][lr]<<",";
+            }
+        }
+        erow--;
+        if(scol<=ecol){
+            for(lc=erow;lc>=srow;lc--){
+                cout<<arr[lc][scol]<<",";
+            }
+        }
+        scol++;
+    }
+}
