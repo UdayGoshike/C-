@@ -1,0 +1,17 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+int main() {
+    char arr[]="bvrit";
+    int n=strlen(arr);
+    int start=0;
+    int end=n-1;
+    while(start<=end){
+        swap(arr[start],arr[end]);
+        start++;
+        end--;
+    }
+    cout<<arr;
+}
+   
