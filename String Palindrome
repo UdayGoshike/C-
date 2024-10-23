@@ -1,0 +1,30 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+bool palindrome(char arr[],int  n){
+    int  start=0;
+    int end=n-1;
+    while(start<end){
+        if(arr[start]==arr[end]){
+            start++;
+            end--;
+        }
+        else{
+            return  false;
+        }
+        
+    }
+    return  true;
+}
+
+int main() {
+    char arr[]="abba";
+    int n=strlen(arr);
+    bool result=palindrome(arr,n);
+    if(result==true){
+        cout<<"palindrome";
+    }else{
+        cout<<"not a palindrome";
+    }
+ 
+}
