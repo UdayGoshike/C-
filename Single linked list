@@ -1,0 +1,121 @@
+#include<iostream>
+using namespace std;
+class Node{
+    public:
+    int val;
+    Node *next;
+    Node(int data){
+        val=data;
+        next=nullptr;
+    }
+};
+class list{
+    public:
+    Node *head;
+    Node*tail;
+    list(){
+        head=nullptr;
+        tail=nullptr;
+    }
+    void push_front(int val){
+        Node *newnode=new Node(val);
+        if(head==nullptr){
+            head=tail=newnode;
+         }
+         else{
+             newnode->next=head;
+             head=newnode;
+         }
+    }
+    
+    void push_back(int val){
+        Node *newnode=new Node(val);
+        if(head==nullptr){
+            head=tail=newnode;
+         }
+         else{
+             tail->next=newnode;
+             tail=newnode;
+             newnode->next=nullptr;
+         }
+         
+    }
+    
+    void print(){
+        Node *temp;
+        temp=head;
+        while(temp!=nullptr){
+            cout<<temp->val<<"->";
+            temp=temp->next;
+        }
+        cout<<"NULL"<<endl;
+    }
+    void pop_front(){
+        Node *temp;
+        if(head==nullptr){
+            cout<<"Linked list is empty"<<endl;
+        }else{
+            temp=head;
+            head=head->next;
+            temp->next=nullptr;
+            delete temp;
+        }
+    }
+    void pop_back(){
+        Node *temp=head;
+        while(temp->next->next!=nullptr){
+            temp=temp->next;
+        }
+        tail=temp;
+        temp->next=nullptr;
+    }
+    void insert(int pos,int data){
+        Node *newnode=new Node(data);
+        if (pos == 1) {
+        newnode->next = head;
+        head = newnode;
+        if (tail == nullptr) {
+            tail = newnode; 
+        }
+        return;
+    }
+        Node *temp=head;
+        for(int i=1;i<pos-1;i++){
+            temp=temp->next;
+        }
+        newnode->next=temp->next;
+        temp->next=newnode;
+        
+    }
+    void reverse(){
+        Node *prev=nullptr;
+        Node *curr=head;
+        while(curr!=nullptr){
+            Node *next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        head=prev;
+    }
+};
+int main(){
+    list ll;
+    ll.push_front(4);
+    ll.push_front(2);
+    ll.push_front(1);
+    ll.push_back(5);
+    ll.push_back(6);
+    ll.push_back(7);
+    ll.push_back(8);
+    ll.print();
+    ll.pop_front();
+    ll.print();
+    ll.pop_back();
+    ll.print();
+    ll.insert(2,3);    
+    ll.print();
+    ll.reverse();
+    ll.print();
+}
+
