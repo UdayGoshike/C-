@@ -1,0 +1,119 @@
+#include<iostream>
+using namespace std;
+class Node{
+public:
+ int val;
+ Node *next;
+ Node *prev;
+ Node(int data){
+     val=data;
+     next=prev=nullptr;
+ }
+     
+ };
+class list{
+public:
+    Node *head;
+    Node*tail;
+    list(){
+        head=tail=nullptr;
+    }
+void push_front(int val){
+    Node *newnode=new Node(val);
+    if(head==nullptr){
+        head=tail=newnode;
+    }
+    else{
+        head->prev=newnode;
+        newnode->next=head;
+        head=newnode;
+    }
+}
+    void pop_front(){
+        Node *temp;
+        temp=head;
+        head=head->next;
+        if(head!=nullptr){
+            head->prev=nullptr;
+            temp->next=nullptr;
+        }
+        
+        delete temp;
+    }
+    void push_back(int val){
+        Node *newnode=new Node(val);
+    if(head==nullptr){
+        head=tail=newnode;
+    }
+    else{
+        newnode->prev=tail;
+        tail->next=newnode;
+        tail=newnode;
+    }
+        
+        
+    }
+    void pop_back(){
+        
+        if(head==tail){
+            delete head;
+            head=tail=nullptr;
+        }else{
+            Node *temp=tail;
+            tail=tail->prev;
+            tail->next=nullptr;
+            temp->prev=nullptr;
+            delete temp;
+        }
+    }
+    void insert(int pos,int val){
+        Node *newnode=new Node(val);
+        if (head == nullptr) {
+        head = tail = newnode;
+        return;
+    }
+
+    if (pos== 0) {
+        newnode->next = head;
+        head->prev = newnode;
+        head = newnode;
+        return;
+    }
+        Node *temp=head;
+        for(int i=1;i<pos-1;i++){
+            temp=temp->next;
+        }
+        newnode->next=temp->next;
+        newnode->prev=temp;
+        temp->next->prev=newnode;
+        temp->next=newnode;
+        
+        
+    }
+
+    void print(){
+        Node *temp;
+        temp=head;
+        while(temp!=nullptr){
+            cout<<temp->val<<"<=>";
+            temp=temp->next;
+        }
+        cout<<"NULL"<<endl;
+    }
+    
+};
+
+int main(){
+    list ll;
+    ll.push_front(5);
+    ll.push_front(4);
+    ll.push_front(3);
+    ll.push_front(2);
+    ll.push_front(1);
+    ll.pop_front();
+    ll.push_back(6);
+    ll.print();
+    ll.pop_back();
+    ll.insert(3,8);
+    ll.print();
+}
